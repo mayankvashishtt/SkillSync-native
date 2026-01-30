@@ -2,9 +2,10 @@ import axios from 'axios';
 import { useAuthStore } from '../store/useAuthStore';
 
 const api = axios.create({
-    baseURL: 'http://10.30.5.229:5000/api', // Updated to machine IP for mobile testing
+    baseURL: 'https://giant-rabbits-accept.loca.lt/api', // Public tunnel URL for reliability
     headers: {
         'Content-Type': 'application/json',
+        'bypass-tunnel-reminder': 'true', // Required for localtunnel to bypass warning page
     },
 });
 
