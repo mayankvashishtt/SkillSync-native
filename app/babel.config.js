@@ -6,11 +6,12 @@ module.exports = function (api) {
       // Required for expo-router
       'expo-router/babel',
       'react-native-reanimated/plugin',
+      '@babel/plugin-transform-modules-commonjs',
       [
         'module-resolver',
         {
           alias: {
-            tslib: 'tslib/tslib.js',
+            tslib: 'tslib/tslib.es6.js',
           },
         },
       ],
