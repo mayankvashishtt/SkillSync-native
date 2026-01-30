@@ -14,6 +14,10 @@ connectDB();
 const app = express();
 
 // Middleware
+app.use((req, res, next) => {
+    console.log(`\x1b[36m[API DEBUG]\x1b[0m ${req.method} ${req.url}`);
+    next();
+});
 app.use(express.json());
 app.use(cors({ origin: '*' })); // Explicitly allow all origins
 app.use(morgan('dev'));

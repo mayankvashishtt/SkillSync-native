@@ -24,7 +24,8 @@ export default function LoginScreen() {
             setUser(res.data, res.data.token);
             router.replace('/(tabs)');
         } catch (error: any) {
-            Alert.alert('Error', error.response?.data?.message || 'Login failed');
+            console.log('Login Error:', error);
+            Alert.alert('Error', error.response?.data?.message || error.message || 'Login failed');
         }
     };
 

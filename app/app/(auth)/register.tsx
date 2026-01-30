@@ -25,7 +25,8 @@ export default function RegisterScreen() {
             setUser(res.data, res.data.token);
             router.replace('/(tabs)');
         } catch (error: any) {
-            Alert.alert('Error', error.response?.data?.message || 'Registration failed');
+            console.log('Register Error:', error);
+            Alert.alert('Error', error.response?.data?.message || error.message || 'Registration failed');
         }
     };
 
