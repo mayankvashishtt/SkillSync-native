@@ -1,6 +1,6 @@
 import express from 'express';
-import { getHabits, createHabit, updateHabit, deleteHabit, checkInHabit } from '../controllers/habitController';
-import { protect } from '../middleware/authMiddleware';
+import { getHabits, createHabit, updateHabit, deleteHabit, checkInHabit } from '../controllers/habitController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
