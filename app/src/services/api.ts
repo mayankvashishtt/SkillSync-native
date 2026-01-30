@@ -2,10 +2,10 @@ import axios from 'axios';
 import { useAuthStore } from '../store/useAuthStore';
 
 const api = axios.create({
-    baseURL: 'https://skillsync-api-mayankv.loca.lt/api', // Public tunnel URL (More stable subdomain)
+    baseURL: 'https://strident-runic-ireland.ngrok-free.dev/api', // Stable Ngrok URL
     headers: {
         'Content-Type': 'application/json',
-        'bypass-tunnel-reminder': 'true', // Required for localtunnel to bypass warning page
+        'ngrok-skip-browser-warning': 'true', // Skip ngrok landing page
     },
 });
 
