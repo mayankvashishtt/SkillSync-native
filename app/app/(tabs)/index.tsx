@@ -5,6 +5,7 @@ import { Colors, Spacing, Typography } from '../../src/theme/theme';
 import { useHabitStore } from '../../src/store/useHabitStore';
 import { useAuthStore } from '../../src/store/useAuthStore';
 import { CheckCircle2, Flame, Trophy, Plus, Settings } from 'lucide-react-native';
+import { useRouter, Link } from 'expo-router';
 import { MotiView } from 'moti';
 
 export default function DashboardScreen() {
@@ -63,9 +64,11 @@ export default function DashboardScreen() {
 
                 <View style={styles.sectionHeader}>
                     <Text style={styles.sectionTitle}>Daily Habits</Text>
-                    <TouchableOpacity style={styles.addButton}>
-                        <Plus size={20} color="white" />
-                    </TouchableOpacity>
+                    <Link href="/modal" asChild>
+                        <TouchableOpacity style={styles.addButton}>
+                            <Plus size={20} color="white" />
+                        </TouchableOpacity>
+                    </Link>
                 </View>
 
                 {habits.length === 0 ? (
