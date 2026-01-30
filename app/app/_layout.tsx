@@ -45,15 +45,37 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useAuthStore } from '../src/store/useAuthStore';
+import { useRouter, useSegments } from 'expo-router';
+
+const queryClient = new QueryClient();
+
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const { token } = useAuthStore();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    const inAuthGroup = segments[0] === '(auth)';
+    
+    if (!token && !inAuthGroup) {
+      router.replace('/(auth)/login');
+    } else if (token && inAuthGroup) {
+      router.replace('/(tabs)');
+    }
+  }, [token, segments]);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider value={DarkTheme}>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        </Stack>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
